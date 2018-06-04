@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "UserTasks";
+}
+
+<h2>Your Tasks: </h2>
+<p>@ViewBag.Message</p>
+
+@if (Model?.TaskList != null)
+{
+    <br />
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th>Task Name:</th>
+            <th>Task Description:</th>
+            <th>Task Due Date:</th>
+        </tr>
+        @foreach (var task in Model.TaskList)
+        {
+            <tr>
+                <td> @task.TaskName </td>
+                <td>@task.Description </td>
+                <td>@task.Duedate </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p class="text-danger"><em>No tasks to display yet </em></p>
+}

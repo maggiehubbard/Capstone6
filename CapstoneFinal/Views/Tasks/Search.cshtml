@@ -1,0 +1,40 @@
+﻿@model CapstoneFinal.Models.TaskViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+<p>Enter an email to view tasks assigned to tha user: </p>
+
+@using (Html.BeginForm("Search", "Tasks", FormMethod.Post))
+{
+<div>
+    Email: @Html.TextBoxFor(model => model.Email, new { id = "email", maxlength = 255 })
+    <button type="submit" class="btn">Seach</button>
+</div>
+  }
+
+
+@if (Model?.TaskList != null)
+{
+    <br />
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th>Task Name:</th>
+            <th>Task Description:</th>
+            <th>Task Due Date:</th>
+        </tr>
+        @foreach (var task in Model.TaskList)
+        {
+            <tr>
+                <td> @task.TaskName </td>
+                <td>@task.Description </td>
+                <td>@task.Duedate </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p class="text-danger"><em>Nothing to display. Please try another email address </em></p>
+}
